@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Funny Questions 💗</title>
+<style>
+body {
+  background: linear-gradient(135deg, pink, #d8b4fe);
+  font-family: sans-serif;
+  text-align: center;
+  padding: 70px 10px;
+}
+.card {
+  background: white;
+  max-width: 450px;
+  margin: auto;
+  padding: 30px 15px;
+  border-radius: 20px;
+}
+button {
+  padding: 15px 25px;
+  font-size: 19px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.3s;
+}
+#yes { background: #22c55e; }
+#no { background: #ef4444; }
+#message { color: #d63384; font-size: 18px; }
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>မေးခွန်းလေး ၃ ခု 💗</h1>
+<p id="step">မေးခွန်း 1 / 3</p>
+<h2 id="question"></h2>
+
+<button id="yes">YES 💖</button>
+<button id="no">NO 🙈</button>
+<p id="message"></p>
+</div>
+
+<script>
+const questions = [
+"သင်ချီးစားချင်ပါသလား ?",
+"သင်ချီးကိုကြိုက်ပါသလား?",
+"ချီးကစားကောင်းလား ?"
+];
+
+let current = 0;
+let count = 0;
+
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const question = document.getElementById("question");
+const step = document.getElementById("step");
+const message = document.getElementById("message");
+
+question.textContent = questions[0];
+
+no.onclick = function() {
+  count++;
+  yes.style.transform = `scale(${1 + count * 0.3})`;
+
+  if (count >= 4) {
+    no.style.display = "none";
+    message.textContent = "ဟီးဟီး 😆";
+  }
+};
+
+yes.onclick = function() {
+  current++;
+  count = 0;
+  yes.style.transform = "scale(1)";
+
+  if (current < 3) {
+    question.textContent = questions[current];
+    step.textContent = `မေးခွန်း ${current + 1} / 3`;
+    no.style.display = "inline-block";
+    message.textContent = "";
+  } else {
+    yes.style.display = "none";
+    no.style.display = "none";
+    step.textContent = "ပြီးပါပြီ 🎉";
+    question.textContent =
+      "မင်းရဲ့အကြိုက်တွေကိုဖြေပေးလို့ကျေးဇူးတင်ပါတယ်";
+    message.textContent = "Thank You! 💗";
+  }
+};
+</script>
+</body>
+</html>
